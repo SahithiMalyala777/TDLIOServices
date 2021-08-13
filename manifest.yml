@@ -1,0 +1,68 @@
+  packages:
+    offer:
+      license: Apache-2.0
+      actions:
+        publish:
+          function: actions\generic\offer\PublishOffer.js
+          web: 'yes'
+          runtime: 'nodejs:12'
+          inputs: 
+            LOG_LEVEL: debug
+          annotations:
+            require-adobe-auth: true
+            final: true
+        unPublish:
+          function: actions\generic\offer\UnPublishOffer.js
+          web: 'yes'
+          runtime: 'nodejs:12'
+          inputs: 
+            LOG_LEVEL: debug
+          annotations:
+            require-adobe-auth: false
+            final: true
+    customerData:
+      license: Apache-2.0
+      actions:
+        process:
+          function: actions\generic\C360DataPushTarget\DataProcessing.js
+          web: 'yes'
+          runtime: 'nodejs:12'
+          inputs: 
+            LOG_LEVEL: debug
+          annotations:
+            require-adobe-auth: false
+            final: true  
+    billPayData:
+      license: Apache-2.0
+      actions:
+        process:
+          function: actions\generic\BillPayData\BillPayCustData.js
+          web: 'yes'
+          runtime: 'nodejs:12'
+          inputs: 
+            LOG_LEVEL: debug
+          annotations:
+            require-adobe-auth: false
+            final: true			
+    __APP_PACKAGE__: 
+      license: Apache-2.0
+      actions:
+        generic:
+          function: actions\generic\index.js
+          web: 'yes'
+          runtime: 'nodejs:12'
+          inputs:
+            LOG_LEVEL: debug
+          annotations:
+            require-adobe-auth: true
+            final: true      
+        publish-events:
+          function: actions\publish-events\index.js
+          web: 'yes'
+          runtime: 'nodejs:12'
+          inputs:
+            LOG_LEVEL: debug
+            apiKey: $SERVICE_API_KEY
+          annotations:
+            require-adobe-auth: true
+            final: true

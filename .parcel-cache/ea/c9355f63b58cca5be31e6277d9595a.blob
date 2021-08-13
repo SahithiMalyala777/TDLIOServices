@@ -1,0 +1,183 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactSpectrum = require("@adobe/react-spectrum");
+var _reactErrorBoundary = _interopRequireDefault(require("react-error-boundary"));
+var _reactRouterDom = require("react-router-dom");
+var _SideBar = _interopRequireDefault(require("./SideBar"));
+var _ActionsForm = _interopRequireDefault(require("./ActionsForm"));
+var _Home = require("./Home");
+var _About = require("./About");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+/* 
+* <license header>
+*/ function App(props) {
+    console.log('runtime object:', props.runtime);
+    console.log('ims object:', props.ims); // use exc runtime event handlers
+    // respond to configuration change events (e.g. user switches org)
+    props.runtime.on('configuration', function(param) {
+        var imsOrg = param.imsOrg, imsToken = param.imsToken, locale = param.locale;
+        console.log('configuration change', {
+            imsOrg: imsOrg,
+            imsToken: imsToken,
+            locale: locale
+        });
+    }); // respond to history change events
+    props.runtime.on('history', function(param) {
+        var type = param.type, path = param.path;
+        console.log('history change', {
+            type: type,
+            path: path
+        });
+    });
+    // error handler on UI rendering failure
+    function onError(e, componentStack) {
+    } // component to show if UI fails rendering
+    function fallbackComponent(param) {
+        var componentStack = param.componentStack, error = param.error;
+        return(/*#__PURE__*/ React.createElement(_react.default.Fragment, {
+            __source: {
+                fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+                lineNumber: 88
+            },
+            __self: this
+        }, /*#__PURE__*/ React.createElement("h1", {
+            style: {
+                textAlign: 'center',
+                marginTop: '20px'
+            },
+            __source: {
+                fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+                lineNumber: 89
+            },
+            __self: this
+        }, "Something went wrong :("), /*#__PURE__*/ React.createElement("pre", {
+            __source: {
+                fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+                lineNumber: 95
+            },
+            __self: this
+        }, componentStack + '\n' + error.message)));
+    }
+    return(/*#__PURE__*/ React.createElement(_reactErrorBoundary.default, {
+        onError: onError,
+        FallbackComponent: fallbackComponent,
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 55
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactRouterDom.HashRouter, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 56
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Provider, {
+        theme: _reactSpectrum.defaultTheme,
+        colorScheme: "light",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 57
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Grid, {
+        areas: [
+            'sidebar content'
+        ],
+        columns: [
+            '256px',
+            '3fr'
+        ],
+        rows: [
+            'auto'
+        ],
+        height: "100vh",
+        gap: "size-100",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 58
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.View, {
+        gridArea: "sidebar",
+        backgroundColor: "gray-200",
+        padding: "size-200",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 59
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_SideBar.default, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 60
+        },
+        __self: this
+    })), /*#__PURE__*/ React.createElement(_reactSpectrum.View, {
+        gridArea: "content",
+        padding: "size-200",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 62
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactRouterDom.Switch, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 63
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 64
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_Home.Home, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 65
+        },
+        __self: this
+    })), /*#__PURE__*/ React.createElement(_reactRouterDom.Route, {
+        path: "/actions",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 67
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_ActionsForm.default, {
+        runtime: props.runtime,
+        ims: props.ims,
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 68
+        },
+        __self: this
+    })), /*#__PURE__*/ React.createElement(_reactRouterDom.Route, {
+        path: "/about",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 70
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_About.About, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\App.js",
+            lineNumber: 71
+        },
+        __self: this
+    }))))))))); // Methods
+}
+var _default = App;
+exports.default = _default;

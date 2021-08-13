@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Home = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactSpectrum = require("@adobe/react-spectrum");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+/*
+* <license header>
+*/ var Home = (function() {
+    /*#__PURE__*/ return React.createElement(_reactSpectrum.View, {
+        width: "size-6000",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\Home.js",
+            lineNumber: 17
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Heading, {
+        level: 1,
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\Home.js",
+            lineNumber: 18
+        },
+        __self: this
+    }, "Welcome to ioservices!"));
+}).bind(this);
+exports.Home = Home;

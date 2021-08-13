@@ -1,0 +1,127 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.About = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactSpectrum = require("@adobe/react-spectrum");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+/* 
+* <license header>
+*/ var About = (function() {
+    /*#__PURE__*/ return React.createElement(_reactSpectrum.View, {
+        width: "size-6000",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 17
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Heading, {
+        level: 1,
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 18
+        },
+        __self: this
+    }, "Useful documentation for your app"), /*#__PURE__*/ React.createElement(_reactSpectrum.Content, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 19
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement("ul", {
+        style: {
+            listStyle: 'none'
+        },
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 20
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement("li", {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 23
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Link, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 24
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement("a", {
+        href: "https://github.com/AdobeDocs/project-firefly/blob/master/README.md#project-firefly-developer-guide",
+        target: "_blank",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 25
+        },
+        __self: this
+    }, "Firefly Apps"))), /*#__PURE__*/ React.createElement("li", {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 30
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Link, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 31
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement("a", {
+        href: "https://github.com/adobe/aio-sdk#adobeaio-sdk",
+        target: "_blank",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 32
+        },
+        __self: this
+    }, "Adobe I/O SDK"))), /*#__PURE__*/ React.createElement("li", {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 37
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Link, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 38
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement("a", {
+        href: "https://adobedocs.github.io/adobeio-runtime/",
+        target: "_blank",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 39
+        },
+        __self: this
+    }, "Adobe I/O Runtime"))), /*#__PURE__*/ React.createElement("li", {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 44
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Link, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 45
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement("a", {
+        href: "https://react-spectrum.adobe.com/react-spectrum/index.html",
+        target: "_blank",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\About.js",
+            lineNumber: 46
+        },
+        __self: this
+    }, "React Spectrum"))))));
+}).bind(this);
+exports.About = About;

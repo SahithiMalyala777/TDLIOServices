@@ -1,0 +1,78 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+/* 
+* <license header>
+*/ function SideBar() {
+    return(/*#__PURE__*/ React.createElement("ul", {
+        className: "SideNav",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\SideBar.js",
+            lineNumber: 18
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement("li", {
+        className: "SideNav-item",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\SideBar.js",
+            lineNumber: 19
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactRouterDom.NavLink, {
+        className: "SideNav-itemLink",
+        activeClassName: "is-selected",
+        "aria-current": "page",
+        exact: true,
+        to: "/",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\SideBar.js",
+            lineNumber: 20
+        },
+        __self: this
+    }, "Home")), /*#__PURE__*/ React.createElement("li", {
+        className: "SideNav-item",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\SideBar.js",
+            lineNumber: 22
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactRouterDom.NavLink, {
+        className: "SideNav-itemLink",
+        activeClassName: "is-selected",
+        "aria-current": "page",
+        to: "/actions",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\SideBar.js",
+            lineNumber: 23
+        },
+        __self: this
+    }, "Your App Actions")), /*#__PURE__*/ React.createElement("li", {
+        className: "SideNav-item",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\SideBar.js",
+            lineNumber: 25
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactRouterDom.NavLink, {
+        className: "SideNav-itemLink",
+        activeClassName: "is-selected",
+        "aria-current": "page",
+        to: "/about",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\SideBar.js",
+            lineNumber: 26
+        },
+        __self: this
+    }, "About Project Firefly Apps"))));
+}
+var _default = SideBar;
+exports.default = _default;

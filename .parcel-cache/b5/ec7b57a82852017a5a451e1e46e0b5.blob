@@ -1,0 +1,10 @@
+"use strict";
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.__esModule = true;
+exports.default = Function1;
+var _Function = require("@adobe/react-spectrum-workflow/dist/Function");
+var _icon = require("@react-spectrum/icon");
+var _react = _interopRequireDefault(require("react"));
+function Function1(props) {
+    return(/*#__PURE__*/ _react.default.createElement(_icon.Icon, props, /*#__PURE__*/ _react.default.createElement(_Function.A4uFunction, null)));
+}

@@ -1,0 +1,351 @@
+var _helpers = require("@swc/helpers");
+"use strict";
+var regeneratorRuntime = require("regenerator-runtime");
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+var _propTypes = _interopRequireDefault(require("prop-types"));
+var _reactErrorBoundary = _interopRequireDefault(require("react-error-boundary"));
+var _reactSpectrum = require("@adobe/react-spectrum");
+var _Function = _interopRequireDefault(require("@spectrum-icons/workflow/Function"));
+var _config = _interopRequireDefault(require("../config.json"));
+var _utils = _interopRequireDefault(require("../utils"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+function _getRequireWildcardCache(nodeInterop) {
+    if (typeof WeakMap !== "function") return null;
+    var cacheBabelInterop = new WeakMap();
+    var cacheNodeInterop = new WeakMap();
+    return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop1) {
+        return nodeInterop1 ? cacheNodeInterop : cacheBabelInterop;
+    })(nodeInterop);
+}
+function _interopRequireWildcard(obj, nodeInterop) {
+    if (!nodeInterop && obj && obj.__esModule) return obj;
+    if (obj === null || typeof obj !== "object" && typeof obj !== "function") return {
+        default: obj
+    };
+    var cache = _getRequireWildcardCache(nodeInterop);
+    if (cache && cache.has(obj)) return cache.get(obj);
+    var newObj = {
+    };
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var key in obj)if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+        else newObj[key] = obj[key];
+    }
+    newObj.default = obj;
+    if (cache) cache.set(obj, newObj);
+    return newObj;
+}
+var _obj;
+/* 
+* <license header>
+*/ var ActionsForm = (function(props) {
+    var _marked = regeneratorRuntime.mark(_invokeAction);
+    var _marked1 = regeneratorRuntime.mark(_setJSONInput);
+    var ref = _helpers.slicedToArray(_react.useState({
+        actionSelected: null,
+        actionResponse: null,
+        actionResponseError: null,
+        actionHeaders: null,
+        actionHeadersValid: null,
+        actionParams: null,
+        actionParamsValid: null,
+        actionInvokeInProgress: false,
+        actionResult: ''
+    }), 2), state = ref[0], setState = ref[1];
+    function _setJSONInput() {
+        _setJSONInput = // parses a JSON input and adds it to the state
+        _helpers.asyncToGenerator(regeneratorRuntime.mark(function _callee(input, stateJSON, stateValid) {
+            var content, validStr;
+            return regeneratorRuntime.wrap(function _callee$(_ctx) {
+                while(1)switch(_ctx.prev = _ctx.next){
+                    case 0:
+                        ;
+                        validStr = null;
+                        if (input) {
+                            try {
+                                content = JSON.parse(input);
+                                validStr = 'valid';
+                            } catch (e) {
+                                content = null;
+                                validStr = 'invalid';
+                            }
+                        }
+                        setState(_helpers.objectSpread({
+                        }, state, (_obj = {
+                        }, _helpers.defineProperty(_obj, stateJSON, content), _helpers.defineProperty(_obj, stateValid, validStr), _obj)));
+                    case 4:
+                    case "end":
+                        return _ctx.stop();
+                }
+            }, _callee);
+        }// invokes a the selected backend actions with input headers and params
+        ));
+        return _setJSONInput.apply(this, arguments);
+    }
+    function setJSONInput(input, stateJSON, stateValid) {
+        return _setJSONInput.apply(this, arguments);
+    }
+    function _invokeAction() {
+        _invokeAction = _helpers.asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+            var actionName, headers, params, startTime, lowercase, formattedResult, actionResponse;
+            return regeneratorRuntime.wrap(function _callee$(_ctx) {
+                while(1)switch(_ctx.prev = _ctx.next){
+                    case 0:
+                        setState(_helpers.objectSpread({
+                        }, state, {
+                            actionInvokeInProgress: true,
+                            actionResult: 'calling action ... '
+                        }));
+                        actionName = state.actionSelected;
+                        headers = state.actionHeaders || {
+                        };
+                        params = state.actionParams || {
+                        };
+                        startTime = Date.now(); // all headers to lowercase
+                        Object.keys(headers).forEach(function(h) {
+                            lowercase = h.toLowerCase();
+                            if (lowercase !== h) {
+                                headers[lowercase] = headers[h];
+                                headers[h] = undefined;
+                                delete headers[h];
+                            }
+                        }); // set the authorization header and org from the ims props object
+                        if (props.ims.token && !headers.authorization) {
+                            headers.authorization = "Bearer ".concat(props.ims.token);
+                        }
+                        if (props.ims.org && !headers['x-gw-ims-org-id']) {
+                            headers['x-gw-ims-org-id'] = props.ims.org;
+                        }
+                        formattedResult = "";
+                        _ctx.prev = 9;
+                        _ctx.next = 12;
+                        return _utils.default(_config.default[actionName], headers, params);
+                    case 12:
+                        actionResponse = _ctx.sent;
+                        formattedResult = "time: ".concat(Date.now() - startTime, " ms\n") + JSON.stringify(actionResponse, 0, 2); // store the response
+                        setState(_helpers.objectSpread({
+                        }, state, {
+                            actionResponse: actionResponse,
+                            actionResult: formattedResult,
+                            actionResponseError: null,
+                            actionInvokeInProgress: false
+                        }));
+                        console.log("Response from ".concat(actionName, ":"), actionResponse);
+                        _ctx.next = 23;
+                        break;
+                    case 18:
+                        _ctx.prev = 18;
+                        _ctx.t0 = _ctx["catch"](9);
+                        // log and store any error message
+                        formattedResult = "time: ".concat(Date.now() - startTime, " ms\n") + _ctx.t0.message;
+                        console.error(_ctx.t0);
+                        setState(_helpers.objectSpread({
+                        }, state, {
+                            actionResponse: null,
+                            actionResult: formattedResult,
+                            actionResponseError: _ctx.t0.message,
+                            actionInvokeInProgress: false
+                        }));
+                    case 23:
+                    case "end":
+                        return _ctx.stop();
+                }
+            }, _callee, null, [
+                [
+                    9,
+                    18
+                ]
+            ]);
+        }));
+        return _invokeAction.apply(this, arguments);
+    }
+    function invokeAction() {
+        return _invokeAction.apply(this, arguments);
+    }
+    return(/*#__PURE__*/ React.createElement(_reactSpectrum.View, {
+        width: "size-6000",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 43
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Heading, {
+        level: 1,
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 44
+        },
+        __self: this
+    }, "Run your application backend actions"), Object.keys(_config.default).length > 0 && /*#__PURE__*/ React.createElement(_reactSpectrum.Form, {
+        necessityIndicator: "label",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 45
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.Picker, {
+        label: "Actions",
+        isRequired: true,
+        placeholder: "select an action",
+        "aria-label": "select an action",
+        items: Object.keys(_config.default).map(function(k) {
+            return {
+                name: k
+            };
+        }),
+        itemKey: "name",
+        onSelectionChange: function(name) {
+            return setState(_helpers.objectSpread({
+            }, state, {
+                actionSelected: name,
+                actionResponseError: null,
+                actionResponse: null
+            }));
+        },
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 46
+        },
+        __self: this
+    }, (function(item) {
+        /*#__PURE__*/ return React.createElement(_reactSpectrum.Item, {
+            key: item.name,
+            __source: {
+                fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+                lineNumber: 53
+            },
+            __self: this
+        }, item.name);
+    }).bind(this)), /*#__PURE__*/ React.createElement(_reactSpectrum.TextArea, {
+        label: "headers",
+        placeholder: "{ \"key\": \"value\" }",
+        validationState: state.actionHeadersValid,
+        onChange: function(input) {
+            return setJSONInput(input, 'actionHeaders', 'actionHeadersValid');
+        },
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 56
+        },
+        __self: this
+    }), /*#__PURE__*/ React.createElement(_reactSpectrum.TextArea, {
+        label: "params",
+        placeholder: "{ \"key\": \"value\" }",
+        validationState: state.actionParamsValid,
+        onChange: function(input) {
+            return setJSONInput(input, 'actionParams', 'actionParamsValid');
+        },
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 58
+        },
+        __self: this
+    }), /*#__PURE__*/ React.createElement(_reactSpectrum.Flex, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 59
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.ActionButton, {
+        variant: "primary",
+        type: "button",
+        onPress: invokeAction.bind(void 0),
+        isDisabled: !state.actionSelected,
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 60
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_Function.default, {
+        "aria-label": "Invoke",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 60
+        },
+        __self: this
+    }), /*#__PURE__*/ React.createElement(_reactSpectrum.Text, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 60
+        },
+        __self: this
+    }, "Invoke")), /*#__PURE__*/ React.createElement(_reactSpectrum.ProgressCircle, {
+        "aria-label": "loading",
+        isIndeterminate: true,
+        isHidden: !state.actionInvokeInProgress,
+        marginStart: "size-100",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 62
+        },
+        __self: this
+    }))), state.actionResponseError && /*#__PURE__*/ React.createElement(_reactSpectrum.View, {
+        padding: "size-100",
+        marginTop: "size-100",
+        marginBottom: "size-100",
+        borderRadius: "small ",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 66
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.StatusLight, {
+        variant: "negative",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 67
+        },
+        __self: this
+    }, "Failure! See the complete error in your browser console.")), !state.actionResponseError && state.actionResponse && /*#__PURE__*/ React.createElement(_reactSpectrum.View, {
+        padding: "size-100",
+        marginTop: "size-100",
+        marginBottom: "size-100",
+        borderRadius: "small ",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 69
+        },
+        __self: this
+    }, /*#__PURE__*/ React.createElement(_reactSpectrum.StatusLight, {
+        variant: "positive",
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 70
+        },
+        __self: this
+    }, "Success! See the complete response in your browser console.")), Object.keys(_config.default).length === 0 && /*#__PURE__*/ React.createElement(_reactSpectrum.Text, {
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 73
+        },
+        __self: this
+    }, "You have no actions !"), /*#__PURE__*/ React.createElement(_reactSpectrum.TextArea, {
+        label: "results",
+        isReadOnly: true,
+        width: "size-6000",
+        height: "size-6000",
+        maxWidth: "100%",
+        value: state.actionResult,
+        validationState: !state.actionResponseError ? 'valid' : 'invalid',
+        __source: {
+            fileName: "D:\\Work\\TDL\\Adobe IO\\AEMIOServices\\ioservices\\web-src\\src\\components\\ActionsForm.js",
+            lineNumber: 74
+        },
+        __self: this
+    }))); // Methods
+}).bind(undefined);
+ActionsForm.propTypes = {
+    runtime: _propTypes.default.any,
+    ims: _propTypes.default.any
+};
+var _default = ActionsForm;
+exports.default = _default;

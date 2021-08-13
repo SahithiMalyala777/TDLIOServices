@@ -1,0 +1,1 @@
+module.exports = JSON.parse("{\"offer/publish\":\"https://288455-ioservices-dev.adobeioruntime.net/api/v1/web/offer/publish\",\"generic\":\"https://288455-ioservices-dev.adobeioruntime.net/api/v1/web/ioservices-0.0.1/generic\",\"publish-events\":\"https://288455-ioservices-dev.adobeioruntime.net/api/v1/web/ioservices-0.0.1/publish-events\"}");
