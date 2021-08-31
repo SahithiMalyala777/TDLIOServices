@@ -23,6 +23,7 @@ junit.xml
 .idea
 .nyc_output
 .vscode
+.parcel-cache
 coverage
 .aws.tmp.creds.json
 .wskdebug.props.tmp

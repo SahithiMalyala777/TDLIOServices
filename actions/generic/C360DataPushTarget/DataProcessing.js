@@ -12,41 +12,72 @@ async function resolve(params) {
     console.log('Azure Blob storage v12');
 
     var fileName = params.fileName;
-	
+
     // Quick start code goes here
-	// Create the BlobServiceClient object which will be used to create a container client
-const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=statddevdeciaemlrs01;AccountKey=YglJSjxYI6KirviDU37QoKfLRD2PYi2y9ifRMzlm+V68zfo8a8+BIMew4o2rkzFEiDT7tdsOCsInOunTa/Tzww==;EndpointSuffix=core.windows.net");
+    // Create the BlobServiceClient object which will be used to create a container client
+    const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=statddevdeciaemlrs01;AccountKey=YglJSjxYI6KirviDU37QoKfLRD2PYi2y9ifRMzlm+V68zfo8a8+BIMew4o2rkzFEiDT7tdsOCsInOunTa/Tzww==;EndpointSuffix=core.windows.net");
 
-// Get a reference to a container
-const containerClient = blobServiceClient.getContainerClient("datapowered");
-//console.log(containerClient);
+    // Get a reference to a container
+    const containerClient = blobServiceClient.getContainerClient("datapowered");
+    //console.log(containerClient);
 
-console.log('\nListing blobs...');
-
-const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-const downloadBlockBlobResponse = await blockBlobClient.download(0);
-console.log('\t Retrieving data');
-var data= await streamToString(downloadBlockBlobResponse.readableStreamBody);
-console.log("data: "+data);
-   // var data = params.__ow_body;
-    var finalJSON = [];
-    const lines = data.toString().split('\n');
-    var headerLine = lines[0];
-    var headers = headerLine.replace(regex, '').split(",");
+    //console.log('\nListing blobs...');
+    let iter = containerClient.listBlobsFlat({ prefix: fileName + "/" });
+    //console.log("Retrieving folder contents");
     var responses = [];
-    console.log("headers: " + headerLine);
+    for await (const item of iter) {
+        //responses.push(item.name);
+        if (item.name.includes('.csv')) {
+            responses.push(item.name);
+            const blockBlobClient = containerClient.getBlockBlobClient(item.name);
+            const downloadBlockBlobResponse = await blockBlobClient.download(0);
+            //console.log('\t Retrieving data');
+            var data = await streamToString(downloadBlockBlobResponse.readableStreamBody);
+            //console.log("data: " + data);
 
-    for (let i = 1; i < lines.length-1; i++) {
-        var lineElements = lines[i].replace(regex, '').split(',');
-        var userJSON = {};
-        for (let j = 1; j < headers.length; j++) {
-            userJSON[headers[j]] = lineElements[j];
+            // var data = params.__ow_body;
+            var finalJSON = [];
+            const lines = data.toString().split('\n');
+            var headerLine = lines[0];
+            var headers = headerLine.replace(regex, '').split(",");
+            //console.log("headers: " + headerLine);
+            var customerHashIndex = 0;
+
+            for (let headerIndex = 0; headerIndex < headers.length; headerIndex++) {
+                if (headers[headerIndex] == "customerHash") {
+                    customerHashIndex = headerIndex;
+                    break;
+                }
+            }
+
+            console.log("Customer Hash Index: " + customerHashIndex);
+            console.log("Lines Length: " + lines.length);
+
+            for (let i = 1; i < lines.length; i++) {
+                var lineElements = lines[i].replace(regex, '').split(',');
+                var userJSON = {};
+                //console.log("row " + i + ": " + JSON.stringify(userJSON));
+                console.log("CustomerHash: " + lineElements[customerHashIndex]);
+                responses.push(lineElements[customerHashIndex]);
+                var index = 0;
+                for (let j = 0; j < headers.length; j++) {
+
+                    if (j != customerHashIndex) {
+                        userJSON[headers[j]] = lineElements[j];
+                        index = index + 1;
+                    }
+                    if (index >= 40) {
+                        var targetResponse = await postToTarget(lineElements[customerHashIndex], userJSON);
+                        if (targetResponse.error) {
+                            responses.push(targetResponse);
+                        }
+                        userJSON = {};
+                        index = 0;
+                    }
+                }
+
+            }
         }
-        console.log("row " + i + ": " + JSON.stringify(userJSON));
-        finalJSON.push(userJSON);
-        console.log("CustomerHash: " + lineElements[0]);
-        var targetResponse = await postToTarget(lineElements[0], userJSON);
-        responses.push(lineElements[0]);
     }
     return {
         statusCode: 200,
@@ -62,16 +93,16 @@ console.log("data: "+data);
 // A helper function used to read a Node.js readable stream into a string
 async function streamToString(readableStream) {
     return new Promise((resolve, reject) => {
-      const chunks = [];
-      readableStream.on("data", (data) => {
-        chunks.push(data.toString());
-      });
-      readableStream.on("end", () => {
-        resolve(chunks.join(""));
-      });
-      readableStream.on("error", reject);
+        const chunks = [];
+        readableStream.on("data", (data) => {
+            chunks.push(data.toString());
+        });
+        readableStream.on("end", () => {
+            resolve(chunks.join(""));
+        });
+        readableStream.on("error", reject);
     });
-  }
+}
 
 async function postToTarget(customerHash, profileData) {
     try {
@@ -124,6 +155,7 @@ async function postToTarget(customerHash, profileData) {
 
     } catch (e) {
         console.log(e);
+        return { request: options, error: e };
     }
 }
 
