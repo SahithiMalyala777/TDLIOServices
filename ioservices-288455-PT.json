@@ -1,0 +1,51 @@
+{
+    "project": {
+        "id": "4566206088344643581",
+        "name": "ioservices",
+        "title": "AEM IO Services",
+        "org": {
+            "id": "288455",
+            "name": "TATA DIGITAL LIMITED",
+            "ims_org_id": "EE3B6AAD5E1ED5570A495FA0@AdobeOrg"
+        },
+        "workspace": {
+            "id": "4566206088344645820",
+            "name": "PT",
+            "title": "PT",
+            "action_url": "https://288455-ioservices-pt.adobeioruntime.net",
+            "app_url": "https://288455-ioservices-pt.adobeio-static.net",
+            "details": {
+                "credentials": [
+                    {
+                        "id": "181833",
+                        "name": "AEM IO Services J 1625038969732",
+                        "integration_type": "service",
+                        "jwt": {
+                            "client_id": "e4a07fa0f46544a6bedf2dec9b8c4909",
+                            "client_secret": "p8e-tNdrsvu00R4PsWHfB7ncXEChaW_hhY92",
+                            "technical_account_email": "af374e4c-102c-4226-a3b6-f873057dd53d@techacct.adobe.com",
+                            "technical_account_id": "69A74FFB60DC1F870A495CB6@techacct.adobe.com",
+                            "meta_scopes": [
+                                "ent_marketing_sdk"
+                            ]
+                        }
+                    }
+                ],
+                "services": [
+                    {
+                        "code": "AdobeTargetSDK",
+                        "name": "Adobe Target"
+                    }
+                ],
+                "runtime": {
+                    "namespaces": [
+                        {
+                            "name": "288455-ioservices-pt",
+                            "auth": "00ce4c40-2a4c-4319-9443-a78a589c8869:S10PIo71eoXBKH751KKTuCqno2TX30e780jPaMrmXo7auvl541m1bg3RH1W25Q43"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

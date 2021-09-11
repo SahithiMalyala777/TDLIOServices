@@ -1,0 +1,61 @@
+{
+    "project": {
+        "id": "4566206088344643581",
+        "name": "ioservices",
+        "title": "AEM IO Services",
+        "org": {
+            "id": "288455",
+            "name": "TATA DIGITAL LIMITED",
+            "ims_org_id": "EE3B6AAD5E1ED5570A495FA0@AdobeOrg"
+        },
+        "workspace": {
+            "id": "4566206088344645819",
+            "name": "Dev",
+            "title": "Dev",
+            "action_url": "https://288455-ioservices-dev.adobeioruntime.net",
+            "app_url": "https://288455-ioservices-dev.adobeio-static.net",
+            "details": {
+                "credentials": [
+                    {
+                        "id": "174460",
+                        "name": "AEM IO Services J 1623060669168",
+                        "integration_type": "service",
+                        "jwt": {
+                            "client_id": "fa8aa124c68a470780fa43721d900bd1",
+                            "client_secret": "p8e-pHIptDTdEgaz66BpEoo4F9tgLjlu93FZ",
+                            "technical_account_email": "3f26a240-14f0-462b-b645-9056f9f1141f@techacct.adobe.com",
+                            "technical_account_id": "A1A916B460BDEFD60A495EF4@techacct.adobe.com",
+                            "meta_scopes": [
+                                "ent_adobeio_sdk",
+                                "ent_marketing_sdk",
+                                "ent_gdpr_sdk"
+                            ]
+                        }
+                    }
+                ],
+                "services": [
+                    {
+                        "code": "AdobeIOManagementAPISDK",
+                        "name": "I/O Management API"
+                    },
+                    {
+                        "code": "AdobeTargetSDK",
+                        "name": "Adobe Target"
+                    },
+                    {
+                        "code": "McGdprSDK",
+                        "name": "Privacy Service API"
+                    }
+                ],
+                "runtime": {
+                    "namespaces": [
+                        {
+                            "name": "288455-ioservices-dev",
+                            "auth": "b8f2db00-c3f1-422f-bd9f-3e16f1664f1e:T37QEjNG4hL2067fkdHntY1H51eFGq7bpjONcVWSDMDdpLK3j4m1ex57j2VKu6O8"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

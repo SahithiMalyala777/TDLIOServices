@@ -1,0 +1,31 @@
+{
+    "project": {
+        "id": "4566206088344643581",
+        "name": "ioservices",
+        "title": "AEM IO Services",
+        "org": {
+            "id": "288455",
+            "name": "TATA DIGITAL LIMITED",
+            "ims_org_id": "EE3B6AAD5E1ED5570A495FA0@AdobeOrg"
+        },
+        "workspace": {
+            "id": "4566206088344645821",
+            "name": "Production",
+            "title": "Production",
+            "action_url": "https://288455-ioservices.adobeioruntime.net",
+            "app_url": "https://288455-ioservices.adobeio-static.net",
+            "details": {
+                "credentials": [],
+                "services": [],
+                "runtime": {
+                    "namespaces": [
+                        {
+                            "name": "288455-ioservices",
+                            "auth": "16896412-1883-48af-9ed0-ed729fd93098:nn15ei45n03CQGnR6LN8S1OmYD6QMLYHa833WvRXLCC1xlc27DPNlK8uhu18Rhh3"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
